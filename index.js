@@ -51,7 +51,7 @@ const browserify = require('browserify'),
       fs = require('fs')
 
 const b = browserify('./lib/Hack.js', {standalone: 'Hack'}),
-      output = fs.createWriteStream('public/hack.js')
+      output = fs.createWriteStream('public/Hack.js')
 
 b.transform(envify)
 
