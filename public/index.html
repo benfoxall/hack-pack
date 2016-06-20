@@ -5,11 +5,6 @@
     <title>hack test</title>
     <style media="screen">
       body {font-family: sans-serif}
-      script {
-        display: block;
-        font-family: monospace;
-        white-space: pre
-      }
       ul {
         max-height: 300px;
         overflow: scroll;
@@ -17,45 +12,62 @@
     </style>
   </head>
   <body>
-    <h1>Hack.js</h1>
+    <h1>Hack room</h1>
+
+<pre><code>
+&lt;script src="Hack.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+var hack = new Hack('my-hack-room')
+
+hack.on('message', function(message){
+  // message receieved in room
+  console.log(message)
+})
+
+// send message to room
+hack.trigger('message', text.value)
+&lt;/script&gt;
+    </code></pre>
+
+    <hr />
 
     <ul id="messages">
     </ul>
     <form id="form">
-      <input type="text" id="text" value=""><input type="submit" value="ok">
+      <input type="text" id="text" value=""><input type="submit" value="send">
     </form>
 
 
-    <script type="text/javascript" src="./Hack.js"></script>
-    <script type="text/javascript">
+    <script src="Hack.js"></script>
+    <script>
 
-var hack = new Hack('my-test-room')
+    var hack = new Hack('my-test-room')
 
-// add any messages we get from anyone else
-hack.on('message', function(message){
-  addMessage(message)
-})
+    // add any messages we get from anyone else
+    hack.on('message', function(message){
+      addMessage(message)
+    })
 
-// submit
-form.addEventListener('submit', function(e) {
-  e.preventDefault()
+    // submit
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
 
-  // broadcast to other people
-  hack.trigger('message', text.value)
+      // broadcast to other people
+      hack.trigger('message', text.value)
 
-  // add it locally
-  addMessage(text.value)
-  text.value = ''
+      // add it locally
+      addMessage(text.value)
+      text.value = ''
 
-}, false)
+    }, false)
 
 
-// helper functions
-function addMessage(txt) {
-  var li = document.createElement('li')
-  li.innerText = txt
-  messages.appendChild(li)
-}
+    // helper functions
+    function addMessage(txt) {
+      var li = document.createElement('li')
+      li.innerText = txt
+      messages.appendChild(li)
+    }
     </script>
 
 
