@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hack test</title>
+    <style media="screen">
+      body {font-family: sans-serif}
+      script {
+        display: block;
+        font-family: monospace;
+        white-space: pre
+      }
+      ul {
+        max-height: 300px;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hack.js</h1>
+
+    <ul id="messages">
+    </ul>
+    <form id="form">
+      <input type="text" id="text" value=""><input type="submit" value="ok">
+    </form>
+
+
+    <script type="text/javascript" src="./Hack.js"></script>
+    <script type="text/javascript">
+
+var hack = new Hack('my-test-room')
+
+// add any messages we get from anyone else
+hack.on('message', function(message){
+  addMessage(message)
+})
+
+// submit
+form.addEventListener('submit', function(e) {
+  e.preventDefault()
+
+  // broadcast to other people
+  hack.trigger('message', text.value)
+
+  // add it locally
+  addMessage(text.value)
+  text.value = ''
+
+}, false)
+
+
+// helper functions
+function addMessage(txt) {
+  var li = document.createElement('li')
+  li.innerText = txt
+  messages.appendChild(li)
+}
+    </script>
+
+
+  </body>
+</html>
